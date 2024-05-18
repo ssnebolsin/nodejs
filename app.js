@@ -1,13 +1,7 @@
-require('dotenv').config()
-const dbConfig = require("./config/db")[process.env['APP_ENV']]
-const { criticalLog, warningLog, debugLog } = require('./config/logger')
 
-warningLog('warning message')
-debugLog('debug message')
+for (let i = 0; i < 10; i++) {
 
-try {
-    console.log(abc)
-
-} catch (error) {
-    criticalLog(error)
+    setTimeout(() => {
+        console.log(i)
+    }, i * 100)
 }
