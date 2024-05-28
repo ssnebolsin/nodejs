@@ -1,7 +1,9 @@
 
-for (let i = 0; i < 10; i++) {
+// for (let i = 0; i < 10; i++) {
 
-    setTimeout(() => {
-        console.log(i)
-    }, i * 100)
-}
+//     setTimeout(() => {
+//         console.log(i)
+//     }, i * 100)
+// }
+
+require('./src/http')()
