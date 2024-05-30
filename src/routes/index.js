@@ -7,8 +7,8 @@ const router = new Router()
 
 router.get('/', (req, res)=>{
 
-    const filepath = path.join(__dirname, '../html/index.html')
-    const index = fs.readFileSync(filepath)
+    // const filepath = path.join(__dirname, '../html/index.html')
+    // const index = fs.readFileSync(filepath)
 
     function getRandomCode(){
         return Math.random() < 0.1 ? 500 : 200;
@@ -22,17 +22,27 @@ router.get('/', (req, res)=>{
         "random Code": randCode
     }
 
-    function response() {
-        if(randCode === 200){
-            // return JSON.stringify(obj)
-            return index.toString('utf-8')
-        } else {
-            return '500 Internal Server Error'
+    const pugFile200 = pug.renderFile(
+        path.join(__dirname, '../html/templates/index.pug'),
+        {
+        rTimeOut: randTimeout,
+        rCode: randCode
         }
+    )
+
+    const pugFile500 = pug.renderFile(
+        path.join(__dirname, '../html/templates/error.pug'),
+        {
+        rTimeOut: randTimeout,
+        rCode: randCode
+        }
+    )
+
+    function response() {
+       return randCode === 200 ? pugFile200 : pugFile500
     }
 
     setTimeout(() => {
-        // res.set('Content-Type', 'Application/json');
         res.status(randCode).send(response())
     }, randTimeout);
 
