@@ -6,12 +6,8 @@ module.exports = ()=> {
 
     function getRandomCode(){
 
-        if(Math.random() < 0.1){
-            return 500;
-        }
-        else{
-            return 200;
-        }
+        return Math.random() < 0.1 ? 500 : 200;
+
     }
 
     function requestHandler(req, res) {
