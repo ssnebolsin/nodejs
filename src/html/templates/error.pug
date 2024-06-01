@@ -4,6 +4,6 @@ html
         <script src="https://cdn.tailwindcss.com"></script>
     body
         p(class=["text-lg","font-medium"]) Internal Server Error with Timeout 
-            span(class=["text-sky-500"]) #{rTimeOut} ms
+            span(class=["text-sky-500"]) #{rTimeOut/1000} sec
         p(class=["text-lg","font-medium"]) Status Code is 
             span(class=["text-sky-500"]) #{rCode}
