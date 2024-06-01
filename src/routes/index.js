@@ -7,9 +7,6 @@ const router = new Router()
 
 router.get('/', (req, res)=>{
 
-    // const filepath = path.join(__dirname, '../html/index.html')
-    // const index = fs.readFileSync(filepath)
-
     function getRandomCode(){
         return Math.random() < 0.1 ? 500 : 200;
     }

@@ -2,13 +2,6 @@ const express = require("express")
 const router = require("./src/routes")
 const path = require('node:path')
 
-// for (let i = 0; i < 10; i++) {
-
-//     setTimeout(() => {
-//         console.log(i)
-//     }, i * 100)
-// }
-
 // require('./src/http')()
 // require('./src/express')()
 

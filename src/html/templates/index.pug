@@ -1,6 +1,9 @@
 html
     head
         title MyTitle
+        <script src="https://cdn.tailwindcss.com"></script>
     body
-        p Random Timeout is #{rTimeOut}
-        p Random Code is #{rCode}
+        p(class=["text-lg","font-medium"]) Random Timeout is 
+            span(class=["text-sky-500"]) #{rTimeOut}
+        p(class=["text-lg","font-medium"]) Random Code is 
+            span(class=["text-sky-500"]) #{rCode}
