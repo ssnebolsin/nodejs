@@ -1,5 +1,6 @@
 const { Router } = require('express')
 const { getUsers, createUser, getFakeUsers, login, dashboard, path, refreshTokenAUsingTokenB } = require("../controllers/api");
+const { userValidator } = require("../validators/user");
 const { apiAuthA, apiAuthB } = require('../middleware/api-auth');
 
 const apiRouter = new Router()
@@ -7,7 +8,7 @@ const apiRouter = new Router()
 
 apiRouter.get('/', getUsers)
 apiRouter.get('/fake-users', getFakeUsers)
-// apiRouter.post('/', userValidator, createUser)
+apiRouter.post('/create-user', userValidator, createUser)
 
 apiRouter.post('/login', login)
 apiRouter.get('/dashboard', apiAuthA, dashboard)

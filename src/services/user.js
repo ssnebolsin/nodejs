@@ -17,7 +17,7 @@ async function createUser(userObj) {
     const db = await getDb()
     const collection = db.collection('users');
     const saved = await collection.insertOne({
-        username: userObj['name'],
+        name: userObj['name'],
         password: password
     })
 
@@ -35,7 +35,7 @@ async function getUserByUsernameAndPassword(username, password) {
 
     const user = await collection.findOne({
         name: username, 
-        password: password 
+        password: hash 
     })
 
     // const user = await collection.findOne({
