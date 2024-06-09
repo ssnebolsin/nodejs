@@ -1,9 +1,8 @@
 html
-    head
-        title MyTitle
-        <script src="https://cdn.tailwindcss.com"></script>
-    body
-        p(class=["text-lg","font-medium"]) Random Timeout is 
-            span(class=["text-sky-500"]) #{rTimeOut/1000} sec.
-        p(class=["text-lg","font-medium"]) Random Code is 
-            span(class=["text-sky-500"]) #{rCode}
+    bady 
+        
+        div 
+        if(isAuth)
+            a(href='/my-account') myAccount
+        else 
+            a(href='/login') Login

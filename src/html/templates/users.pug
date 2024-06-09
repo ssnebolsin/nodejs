@@ -1,0 +1,21 @@
+html
+    head
+        title Users
+        script(src='https://cdn.tailwindcss.com')
+    bady 
+        nav(class=['w-full', 'border-b', 'border-gray-200'])
+            div(class=['container'])
+                img(src='https://flowbite.com/docs/images/logo.svg' class='h-8')
+                h1 My Top bar
+
+        div(class=['container', 'flex', 'justify-center'])
+            table.table-auto
+                thead
+                    tr
+                        th Name 
+                tbady
+                each user in users
+                     tr.border-b
+                        td= user.Name
+                        td()
+                            img(src=user.avatar class='w-32', 'rounded-full')
