@@ -15,7 +15,7 @@ function countRestiction(req, res, next) {
     userRequests.push(moment().toDate())
     requests.set(hash, userRequests)
 
-    if (userRequests.length > 3) {
+    if (userRequests.length > 100) {
         return res.status(429).send('To many requests')
     }
 

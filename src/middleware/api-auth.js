@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken')
 const { JWT_SECRET } = require('../controllers/api')
 
 
-function apiAuth(req, res, next) {
+function apiAuthA(req, res, next) {
 
 
     try {
@@ -24,5 +24,5 @@ function apiAuth(req, res, next) {
 }
 
 module.exports = {
-    apiAuth
+    apiAuthA
 }

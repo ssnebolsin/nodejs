@@ -37,26 +37,18 @@ async function login(req, res) {
             expiresIn: 60
         })
 
-        const RefreshTokenB = jwt.sign(paylaod, JWT_SECRET, {
-            expiresIn: 60
+        const RefreshTokenB = jwt.sign(paylaod, JWT_REFRESH, {
+            expiresIn: 120
         })
 
         return res.json({
             status: "OK",
-            token: jwt.sign(paylaod, JWT_SECRET, {
-                expiresIn: 60
-            }),
-            refresh: jwt.sign(paylaod, JWT_REFRESH, {
-                expiresIn: 60
-            }),
+            token: BearerTokenA,
+            refresh: RefreshTokenB
         })
     } else {
         return res.status(401).json({ status: "FAILED" })
     }
-
-    console.log({ user })
-
-    return res.json({ status: "OK" })
 }
 
 
@@ -65,6 +57,56 @@ function dashboard(req, res) {
     return res.json({ status: "auth is success" })
 }
 
+function path(req, res) {
+
+    return res.json({ status: "auth is success, Path is available with Token A" })
+}
+
+async function refreshTokenAUsingTokenB(req, res) {
+
+        const refreshTokenB = req.body.refreshTokenB;
+        
+
+        if (!refreshTokenB) {
+            return res.status(401).send('Refresh token is required');
+        }
+
+        try {
+            const data = jwt.verify(refreshTokenB, JWT_REFRESH)
+    
+            if (data) {
+                const payload = { 
+                    userId: data.userId,
+                    permissions: data.permissions 
+                };
+                
+                console.log(payload)
+
+                const newBearerTokenA = jwt.sign(payload, JWT_SECRET, {
+                    expiresIn: 60
+                })
+        
+                const newRefreshTokenB = jwt.sign(payload, JWT_REFRESH, {
+                    expiresIn: 120
+                })
+
+                return res.json({
+                    status: "OK",
+                    token: newBearerTokenA,
+                    refresh: newRefreshTokenB
+                })
+
+            } else {
+                throw new Error('Auth error')
+            }
+    
+        } catch (err) {
+            return res.status(401).json({
+                error: err.message
+            })
+        }
+
+}
 
 
 
@@ -74,5 +116,7 @@ module.exports = {
     getFakeUsers,
     login,
     dashboard,
-    JWT_SECRET
+    JWT_SECRET,
+    path,
+    refreshTokenAUsingTokenB
 }
